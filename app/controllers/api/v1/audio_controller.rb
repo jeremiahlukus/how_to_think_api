@@ -24,10 +24,10 @@ class Api::V1::AudioController < ApiController
   def edit
   end
 
-  # audio /posts
-  # audio /posts.json
+  # audio / audio
+  # audio /audio.json
   def create
-    @audio = Audio.new(post_params)
+    @audio = Audio.new(audio_params)
     authorize @audio
 
     respond_to do |format|
@@ -45,7 +45,7 @@ class Api::V1::AudioController < ApiController
   # PATCH/PUT /audios/1.json
   def update
     respond_to do |format|
-      if @audio.update(post_params)
+      if @audio.update(audio_params)
         format.html { redirect_to @audio, notice: 'Audio was successfully updated.' }
         format.json { render :show, status: :ok, location: @audio }
       else

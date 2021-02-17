@@ -1,5 +1,6 @@
-class Api::V1::UsersController < Api::V1::ApiV1Controller
+class Api::V1::UsersController < ApiController
   before_action :set_api_v1_user, only: [:show, :update, :destroy]
+  before_action :authenticate_user, except: [:new, :create]
 
   # GET /api/v1/users
   def index
@@ -15,7 +16,7 @@ class Api::V1::UsersController < Api::V1::ApiV1Controller
 
   # POST /api/v1/users
   def create
-    @api_v1_user = User.new(api_v1_user_params)
+    @api_v1_user = User.create(api_v1_user_params)
 
     if @api_v1_user.save
       render json: @api_v1_user, status: :created
@@ -47,6 +48,6 @@ class Api::V1::UsersController < Api::V1::ApiV1Controller
 
   # Only allow a trusted parameter "white list" through.
   def api_v1_user_params
-    params.require(:api_v1_user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:api_v1_user).permit(:email, :password, :password_confirmation)
   end
 end

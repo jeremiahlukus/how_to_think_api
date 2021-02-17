@@ -5,7 +5,8 @@ class User < ApplicationRecord
     {
       sub: id,
       admin: true,
-      email: email
+      email: email,
+      fname: fname
     }
   end
 end

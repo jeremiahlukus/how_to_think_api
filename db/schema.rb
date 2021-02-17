@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_17_045640) do
+ActiveRecord::Schema.define(version: 2021_02_17_064503) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "audios", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.datetime "experation_date"
+    t.string "audio_url"
+    t.string "title"
+    t.text "description"
+    t.string "artwork"
+    t.index ["user_id"], name: "index_audios_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email"
@@ -33,8 +43,10 @@ ActiveRecord::Schema.define(version: 2021_02_17_045640) do
     t.text "bio"
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
+    t.string "role", default: "guest"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "audios", "users"
 end

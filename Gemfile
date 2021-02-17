@@ -18,6 +18,8 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
 
+gem 'devise'
+gem "pundit"
 # rails 6 update
 gem 'knock', git: 'https://github.com/jeremiahlukus/knock', branch: 'master', ref: '37e403a7c6d44f585b56a086245e41566a8d6fe1'
 #gem 'knock'
